@@ -22,7 +22,7 @@ def estimator_fn():
       max_depth=4,
       min_child_weight=1,
       n_estimators=1257,
-      n_jobs=100,
+      n_jobs=50,
       subsample=0.37028280278649944,
       verbosity=0,
       random_state=206170845,
