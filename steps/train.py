@@ -1,4 +1,3 @@
-"""
 This module defines the following routines used by the 'train' step of the regression pipeline:
 
 - ``estimator_fn``: Defines the customizable estimator type and parameters that are used
@@ -12,6 +11,19 @@ def estimator_fn():
     The estimator's input and output signatures should be compatible with scikit-learn
     estimators.
     """
-    from sklearn.linear_model import SGDRegressor
-
-    return SGDRegressor(random_state=42)
+    from sklearn.linear_model import LinearRegression
+    from sklearn.tree import DecisionTreeRegressor
+    from sklearn.ensemble import RandomForestRegressor
+    import xgboost
+    
+    return xgboost.XGBRegressor(
+      colsample_bytree=0.4123960280921751,
+      learning_rate=0.018535644061244888,
+      max_depth=4,
+      min_child_weight=1,
+      n_estimators=1257,
+      n_jobs=100,
+      subsample=0.37028280278649944,
+      verbosity=0,
+      random_state=206170845,
+    )
