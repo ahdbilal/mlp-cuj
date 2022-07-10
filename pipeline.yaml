@@ -16,10 +16,10 @@ data:
   # Dataset locations on the local filesystem are supported, as well as HTTP(S) URLs and
   # any other remote locations resolvable by MLflow, such as those listed in
   # https://mlflow.org/docs/latest/tracking.html#artifact-stores
-  location: {{INGEST_DATA_LOCATION}}
+  location: "dbfs:/user/hive/warehouse/housing_dataset"
   # Beyond `parquet` datasets, the `spark_sql` and `delta` formats are also natively supported for
   # use with Spark
-  format: {{INGEST_DATA_FORMAT|default('parquet')}}
+  format: "delta"
   # Datasets with other formats, including `csv`, can be used by implementing and
   # specifying a `custom_loader_method`
   custom_loader_method: steps.ingest.load_file_as_dataframe
@@ -31,7 +31,7 @@ data:
   # version: 2
   # timestamp: 2022-06-01T00:00:00.000Z
 # Specifies the name of the column containing targets / labels for model training and evaluation
-target_col: "fare_amount"
+target_col: "SalePrice"
 steps:
   split:
     # Train/validation/test split ratios
@@ -52,22 +52,15 @@ steps:
         threshold: 10
       - metric: mean_absolute_error
         threshold: 50
-      - metric: weighted_mean_squared_error
-        threshold: 20
   register:
     # Specifies the name of the Registered Model to use when registering a trained model to
     # the MLflow Model Registry
-    model_name: "housing_regressor"
+    model_name: "taxi_fare_regressor"
     # Indicates whether or not a model that fails to meet performance thresholds should still
     # be registered to the MLflow Model Registry
     allow_non_validated_model: true
 metrics:
   # Defines custom performance metrics to compute during model training and evaluation
-  custom:
-    - name: weighted_mean_squared_error
-      # Specifies the name of the function in `steps/custom_metrics.py` to use to compute the metric
-      function: weighted_mean_squared_error
-      greater_is_better: False
   # Sets the primary metric to use to evaluate model performance. This primary metric is used
   # to sort MLflow Runs corresponding to the pipeline in the MLflow Tracking UI
   primary: "root_mean_squared_error"
