@@ -1,3 +1,4 @@
+"""
 This module defines the following routines used by the 'train' step of the regression pipeline:
 
 - ``estimator_fn``: Defines the customizable estimator type and parameters that are used
