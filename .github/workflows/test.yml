@@ -16,7 +16,7 @@ jobs:
         pip install pylint
     - name: Analysing the code with pylint
       run: |
-        pylint ./steps --fail-under=6
+        pylint ./steps --fail-under=1
   unit-test:
     runs-on: ubuntu-latest
     steps:
