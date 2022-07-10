@@ -57,7 +57,7 @@ steps:
   register:
     # Specifies the name of the Registered Model to use when registering a trained model to
     # the MLflow Model Registry
-    model_name: "taxi_fare_regressor"
+    model_name: "housing_regressor"
     # Indicates whether or not a model that fails to meet performance thresholds should still
     # be registered to the MLflow Model Registry
     allow_non_validated_model: true
