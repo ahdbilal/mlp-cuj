@@ -49,9 +49,9 @@ steps:
     # registration to the MLflow Model Registry
     validation_criteria:
       - metric: root_mean_squared_error
-        threshold: 10
+        threshold: 25000
       - metric: mean_absolute_error
-        threshold: 50
+        threshold: 25000
   register:
     # Specifies the name of the Registered Model to use when registering a trained model to
     # the MLflow Model Registry
