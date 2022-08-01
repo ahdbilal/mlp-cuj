@@ -13,9 +13,9 @@ def sample_data():
 
 
 def test_post_split_fn_returns_datasets_with_correct_spec(sample_data):
-    train = sample_data[0:3]
-    validation = sample_data[4:7]
-    test = sample_data[7:10]
+    train = sample_data[0:2]
+    validation = sample_data[2:3]
+    test = sample_data[3:]
     (train_processed, validation_processed, test_processed) = process_splits(
         train, validation, test
     )
@@ -25,9 +25,9 @@ def test_post_split_fn_returns_datasets_with_correct_spec(sample_data):
 
 
 def test_post_split_fn_returns_non_empty_datasets(sample_data):
-    train = sample_data[0:3]
-    validation = sample_data[4:7]
-    test = sample_data[7:10]
+    train = sample_data[0:2]
+    validation = sample_data[2:3]
+    test = sample_data[3:]
     (train_processed, validation_processed, test_processed) = process_splits(
         train, validation, test
     )
