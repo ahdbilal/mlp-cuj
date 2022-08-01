@@ -48,7 +48,6 @@ def process_splits(
 
         object_columns_df = object_columns_df.drop(['Heating','RoofMatl','Condition2','Street','Utilities'],axis=1)
 
-
         numerical_columns_df['Age_House']= (numerical_columns_df['YrSold']-numerical_columns_df['YearBuilt'])
         numerical_columns_df['Age_House'].describe()
 
