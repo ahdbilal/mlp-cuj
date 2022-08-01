@@ -22,7 +22,6 @@ def estimator_fn():
       learning_rate=0.018535644061244888,
       max_depth=4,
       min_child_weight=1,
-      n_estimators=1257,
       n_jobs=100,
       subsample=0.37028280278649944,
       verbosity=0,
