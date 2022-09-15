@@ -9,9 +9,14 @@
 
 # COMMAND ----------
 
-# MAGIC %pip install mlflow[pipelines]
-# MAGIC %pip install -r ../requirements.txt
+# MAGIC %pip install git+https://github.com/mlflow/mlflow@sunish-profile-card
+# MAGIC %pip install -r requirements.txt
 # MAGIC %pip install hyperopt
+
+# COMMAND ----------
+
+import pkg_resources
+pkg_resources.get_distribution("mlflow").version
 
 # COMMAND ----------
 
@@ -153,7 +158,7 @@ p.run("transform")
 
 # COMMAND ----------
 
-def estimator_fn(params):
+def estimator_fn():
     """
     Returns an *unfitted* estimator that defines ``fit()`` and ``predict()`` methods.
     The estimator's input and output signatures should be compatible with scikit-learn
@@ -164,7 +169,7 @@ def estimator_fn(params):
     from sklearn.ensemble import RandomForestRegressor
     import xgboost
     
-    return xgboost.XGBRegressor(**params)
+    return xgboost.XGBRegressor()
 
 # COMMAND ----------
 
@@ -254,10 +259,14 @@ p.inspect("train")
 
 # COMMAND ----------
 
-test_data = p.get_artifact("test_data")
-test_data.describe()
+test_data = p.get_artifact("transformed_training_data")
+test_data.shape()
 
 # COMMAND ----------
 
 trained_model = p.get_artifact("model")
 print(trained_model)
+
+# COMMAND ----------
+
+
